@@ -1,46 +1,42 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한의과대학 본초학(本草學) 강의실</title>
+    <title>본초학 아카이브 | Herbology Editorial Studio</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google Fonts (Noto Serif KR & Inter) -->
+    <!-- Google Fonts (Noto Serif KR & Plus Jakarta Sans / Cormorant Garamond) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+KR:wght@300;400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        oriental: {
-                            50: '#fcfaf7',
-                            100: '#f7f2ea',
-                            200: '#ede2d3',
-                            300: '#decbb4',
-                            400: '#ccad8e',
-                            500: '#b88f6b',
-                            600: '#9e7150',
-                            700: '#7e563d',
-                            800: '#644434',
-                            900: '#4e362a',
-                        },
-                        herb: {
-                            50: '#f2f8f4',
-                            100: '#e1efe5',
-                            500: '#3b8357',
-                            700: '#265839',
-                            800: '#1c422a',
+                        archive: {
+                            base: '#080c09',       // Deep obsidian botanical dark
+                            surface: '#111713',    // Rich dark surface
+                            card: '#17201a',       // Subtle green-tinted card
+                            border: '#243227',     // Subtle border line
+                            borderLight: '#374b3b',
+                            accent: '#d4af37',     // Warm editorial gold
+                            goldHover: '#f5d77f',
+                            herbGreen: '#4ade80',  // Vivid sprout accent
+                            crimson: '#f87171',    // Red accent for Jun(君)
+                            azure: '#60a5fa',      // Blue accent for Shin(臣)
+                            emerald: '#34d399',    // Green accent for Jwa(佐)
+                            amber: '#fbbf24',      // Amber accent for Sa(使)
                         }
                     },
                     fontFamily: {
                         serif: ['"Noto Serif KR"', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
+                        latinSerif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     }
                 }
             }
@@ -48,235 +44,286 @@
     </script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fcfaf7;
-            color: #2d2621;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #080c09;
+            color: #e2e8f0;
+            background-image: radial-gradient(rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+            background-size: 36px 36px;
         }
         .font-oriental {
             font-family: 'Noto Serif KR', serif;
         }
-        /* Custom scrollbar */
+        .font-latin-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* Taste-Skill Inspired Subtle Glows & Visual Depth */
+        .glass-panel {
+            background: rgba(17, 23, 19, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-accent {
+            box-shadow: 0 0 35px -10px rgba(212, 175, 55, 0.15);
+        }
+        .herb-card-hover {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .herb-card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.7);
+        }
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #080c09;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
+            background: #243227;
+            border-radius: 9999px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: #d4af37;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col bg-oriental-50">
+<body class="min-h-screen flex flex-col antialiased selection:bg-archive-accent selection:text-archive-base">
 
-    <!-- Header / Navigation -->
-    <header class="bg-oriental-900 text-oriental-100 shadow-md sticky top-0 z-40">
+    <!-- Editorial Navigation Header Bar -->
+    <header class="sticky top-0 z-40 bg-archive-base/90 backdrop-blur-md border-b border-archive-border/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo & Title -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('herbs')">
-                    <div class="w-10 h-10 rounded-full bg-herb-700 flex items-center justify-center text-amber-200 font-oriental font-bold text-xl border border-amber-300/30">
-                        草
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Logo & Editorial Title -->
+                <div class="flex items-center gap-4 cursor-pointer group" onclick="switchTab('herbs')">
+                    <div class="w-11 h-11 rounded-full border border-archive-accent/40 bg-archive-surface flex items-center justify-center text-archive-accent font-oriental font-bold text-xl group-hover:scale-105 group-hover:border-archive-accent transition-all duration-300 shadow-inner">
+                        本
                     </div>
                     <div>
-                        <h1 class="font-oriental font-bold text-lg sm:text-xl tracking-wide text-amber-100">본초학 강의실 <span class="text-xs font-sans font-normal text-amber-300/70 block sm:inline sm:ml-2">Department of Herbology</span></h1>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] tracking-widest text-archive-accent uppercase font-mono font-semibold">Department of Herbology</span>
+                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-archive-herbGreen animate-pulse"></span>
+                        </div>
+                        <h1 class="font-oriental font-bold text-xl tracking-tight text-slate-100 group-hover:text-archive-accent transition-colors">
+                            본초학 아카이브 <span class="font-latin-serif italic font-normal text-slate-400 text-lg ml-1">Editorial Class</span>
+                        </h1>
                     </div>
                 </div>
 
-                <!-- Desktop Nav Tabs -->
-                <nav class="hidden md:flex space-x-1 lg:space-x-2">
-                    <button onclick="switchTab('herbs')" id="nav-herbs" class="px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5 bg-oriental-800 text-amber-200">
-                        <i data-lucide="leaf" class="w-4 h-4"></i> 본초 도감 (藥材)
+                <!-- Desktop Nav Buttons -->
+                <nav class="hidden md:flex items-center gap-1 bg-archive-surface p-1.5 rounded-full border border-archive-border">
+                    <button onclick="switchTab('herbs')" id="nav-herbs" class="px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-2 bg-archive-accent text-archive-base font-semibold shadow-sm">
+                        <i data-lucide="sprout" class="w-3.5 h-3.5"></i> 본초 도감 (藥材)
                     </button>
-                    <button onclick="switchTab('terms')" id="nav-terms" class="px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5 hover:bg-oriental-800 text-oriental-200">
-                        <i data-lucide="book-open" class="w-4 h-4"></i> 핵심 용어 사전 (用語)
+                    <button onclick="switchTab('terms')" id="nav-terms" class="px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-2 text-slate-300 hover:text-white hover:bg-archive-card">
+                        <i data-lucide="book-marked" class="w-3.5 h-3.5"></i> 원론 사전 (理論)
                     </button>
-                    <button onclick="switchTab('formula')" id="nav-formula" class="px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5 hover:bg-oriental-800 text-oriental-200">
-                        <i data-lucide="flask-conical" class="w-4 h-4"></i> 방제 구성 실습 (君臣佐使)
+                    <button onclick="switchTab('formula')" id="nav-formula" class="px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-2 text-slate-300 hover:text-white hover:bg-archive-card">
+                        <i data-lucide="sliders" class="w-3.5 h-3.5"></i> 군신좌사 캔버스 (君臣佐使)
                     </button>
-                    <button onclick="switchTab('quiz')" id="nav-quiz" class="px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5 hover:bg-oriental-800 text-oriental-200">
-                        <i data-lucide="award" class="w-4 h-4"></i> 자가 학습 퀴즈 (測驗)
+                    <button onclick="switchTab('quiz')" id="nav-quiz" class="px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-2 text-slate-300 hover:text-white hover:bg-archive-card">
+                        <i data-lucide="compass" class="w-3.5 h-3.5"></i> 지식 검증 (測驗)
                     </button>
                 </nav>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-oriental-200 hover:bg-oriental-800 focus:outline-none">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
-                    </button>
-                </div>
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl text-slate-300 border border-archive-border hover:bg-archive-surface transition">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
             </div>
         </div>
 
-        <!-- Mobile Nav Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-oriental-800 border-t border-oriental-700 px-4 pt-2 pb-4 space-y-1">
-            <button onclick="switchTab('herbs')" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-amber-200 hover:bg-oriental-700 flex items-center gap-2">
-                <i data-lucide="leaf" class="w-5 h-5"></i> 본초 도감 (藥材)
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-archive-surface border-b border-archive-border px-4 py-4 space-y-2">
+            <button onclick="switchTab('herbs')" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-medium text-archive-accent flex items-center gap-2 bg-archive-card border border-archive-accent/20">
+                <i data-lucide="sprout" class="w-4 h-4"></i> 본초 도감 (藥材)
             </button>
-            <button onclick="switchTab('terms')" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-oriental-200 hover:bg-oriental-700 flex items-center gap-2">
-                <i data-lucide="book-open" class="w-5 h-5"></i> 핵심 용어 사전 (用語)
+            <button onclick="switchTab('terms')" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 flex items-center gap-2 hover:bg-archive-card">
+                <i data-lucide="book-marked" class="w-4 h-4"></i> 원론 사전 (理論)
             </button>
-            <button onclick="switchTab('formula')" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-oriental-200 hover:bg-oriental-700 flex items-center gap-2">
-                <i data-lucide="flask-conical" class="w-5 h-5"></i> 방제 구성 실습 (君臣佐使)
+            <button onclick="switchTab('formula')" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 flex items-center gap-2 hover:bg-archive-card">
+                <i data-lucide="sliders" class="w-4 h-4"></i> 군신좌사 캔버스 (君臣佐使)
             </button>
-            <button onclick="switchTab('quiz')" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-oriental-200 hover:bg-oriental-700 flex items-center gap-2">
-                <i data-lucide="award" class="w-5 h-5"></i> 자가 학습 퀴즈 (測驗)
+            <button onclick="switchTab('quiz')" class="w-full text-left px-4 py-2.5 rounded-xl text-xs font-medium text-slate-300 flex items-center gap-2 hover:bg-archive-card">
+                <i data-lucide="compass" class="w-4 h-4"></i> 지식 검증 (測驗)
             </button>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <!-- Banner / Hero Section -->
-        <section class="bg-gradient-to-r from-oriental-900 via-oriental-800 to-herb-800 rounded-2xl p-6 md:p-8 text-white mb-8 shadow-lg relative overflow-hidden">
-            <div class="relative z-10 max-w-2xl">
-                <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full text-xs font-semibold mb-3 border border-amber-400/30">
-                    한의학 학부 본초학(Herbology) 정규 강좌
-                </span>
-                <h2 class="text-2xl md:text-3xl font-oriental font-bold mb-2 tracking-tight text-amber-50">
-                    약재의 기미(氣味)와 효능을 체계적으로 탐구합니다
+        <!-- Editorial Hero Banner Section -->
+        <section class="relative rounded-3xl bg-archive-surface border border-archive-border p-6 sm:p-10 mb-10 overflow-hidden glow-accent">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-archive-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-archive-herbGreen/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="relative z-10 max-w-3xl space-y-4">
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="px-3 py-1 bg-archive-accent/10 border border-archive-accent/30 text-archive-accent rounded-full text-xs font-mono font-medium">
+                        TASTE-SKILL EDITORIAL ARCHIVE
+                    </span>
+                    <span class="text-xs text-slate-400 font-latin-serif italic">Vol. 02 — Herbology & Formula Studio</span>
+                </div>
+                
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-oriental font-bold tracking-tight text-white leading-tight">
+                    본초의 <span class="text-archive-accent font-serif italic">사기오미(四氣五味)</span>와 <span class="underline decoration-archive-accent/40 underline-offset-8">귀경(歸經)</span>을 탐구하는 아카이브
                 </h2>
-                <p class="text-oriental-200 text-sm md:text-base leading-relaxed">
-                    본초학은 한약재의 성질(四氣), 맛(五味), 작용 부위(歸經) 및 주치 효능을 연구하는 한의학의 핵심 기초 학문입니다. 약재 도감과 용어를 통해 지식을 확장해 보세요.
+                
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+                    약재 본연의 성질과 효능, 인체 내 경락 작용 구조 및 군신좌사(君臣佐使) 방제 구성의 원리를 직관적인 에디토리얼 인터페이스로 학습하세요.
                 </p>
-            </div>
-            <div class="absolute -right-8 -bottom-10 opacity-15 pointer-events-none text-white">
-                <i data-lucide="sprout" class="w-72 h-72"></i>
+
+                <div class="pt-2 flex flex-wrap gap-6 text-xs text-slate-400 font-mono">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-archive-accent"></span>
+                        <span>수록 약재: <strong class="text-white">8종</strong></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-archive-herbGreen"></span>
+                        <span>핵심 원론: <strong class="text-white">5대 프레임워크</strong></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                        <span>방제 시뮬레이터: <strong class="text-white">군신좌사 지원</strong></span>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- ==================== TAB 1: 본초 도감 (HERBS) ==================== -->
         <section id="tab-herbs" class="tab-content space-y-6">
-            <!-- Search & Filters -->
-            <div class="bg-white p-4 md:p-5 rounded-xl border border-oriental-200 shadow-sm space-y-4">
-                <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
-                    <!-- Search Input -->
-                    <div class="relative w-full md:w-96">
-                        <i data-lucide="search" class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                        <input type="text" id="herb-search" oninput="filterHerbs()" placeholder="약재명(한글/한자), 효능, 성질 검색..." class="w-full pl-10 pr-4 py-2 border border-oriental-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-herb-500 text-sm">
-                    </div>
+            <!-- Filter Bar & Search -->
+            <div class="glass-panel p-4 sm:p-5 rounded-2xl border border-archive-border flex flex-col md:flex-row gap-4 items-center justify-between">
+                <!-- Search Input -->
+                <div class="relative w-full md:w-80">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="herb-search" oninput="filterHerbs()" placeholder="약재명, 한자, 효능 검색..." class="w-full bg-archive-base border border-archive-border rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-archive-accent transition-all">
+                </div>
 
-                    <!-- Category Chips -->
-                    <div class="flex flex-wrap gap-2 w-full md:w-auto text-xs font-medium" id="category-filters">
-                        <button onclick="setHerbCategory('all')" class="cat-btn active bg-herb-700 text-white px-3 py-1.5 rounded-full transition">전체</button>
-                        <button onclick="setHerbCategory('해표약')" class="cat-btn bg-oriental-100 text-oriental-800 hover:bg-oriental-200 px-3 py-1.5 rounded-full transition">해표약(解表藥)</button>
-                        <button onclick="setHerbCategory('청열약')" class="cat-btn bg-oriental-100 text-oriental-800 hover:bg-oriental-200 px-3 py-1.5 rounded-full transition">청열약(清熱藥)</button>
-                        <button onclick="setHerbCategory('보익약')" class="cat-btn bg-oriental-100 text-oriental-800 hover:bg-oriental-200 px-3 py-1.5 rounded-full transition">보익약(補益藥)</button>
-                        <button onclick="setHerbCategory('이기약')" class="cat-btn bg-oriental-100 text-oriental-800 hover:bg-oriental-200 px-3 py-1.5 rounded-full transition">이기약(理氣藥)</button>
-                        <button onclick="setHerbCategory('활혈거어약')" class="cat-btn bg-oriental-100 text-oriental-800 hover:bg-oriental-200 px-3 py-1.5 rounded-full transition">활혈거어약(活血祛瘀藥)</button>
-                    </div>
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-1.5 w-full md:w-auto text-xs font-medium" id="category-filters">
+                    <button onclick="setHerbCategory('all')" class="cat-btn active px-3.5 py-1.5 rounded-lg bg-archive-accent text-archive-base font-bold transition">전체 보기</button>
+                    <button onclick="setHerbCategory('해표약')" class="cat-btn px-3.5 py-1.5 rounded-lg bg-archive-base text-slate-400 hover:text-white border border-archive-border hover:border-archive-borderLight transition">해표약(解表)</button>
+                    <button onclick="setHerbCategory('청열약')" class="cat-btn px-3.5 py-1.5 rounded-lg bg-archive-base text-slate-400 hover:text-white border border-archive-border hover:border-archive-borderLight transition">청열약(清熱)</button>
+                    <button onclick="setHerbCategory('보익약')" class="cat-btn px-3.5 py-1.5 rounded-lg bg-archive-base text-slate-400 hover:text-white border border-archive-border hover:border-archive-borderLight transition">보익약(補益)</button>
+                    <button onclick="setHerbCategory('이기약')" class="cat-btn px-3.5 py-1.5 rounded-lg bg-archive-base text-slate-400 hover:text-white border border-archive-border hover:border-archive-borderLight transition">이기약(理氣)</button>
+                    <button onclick="setHerbCategory('활혈거어약')" class="cat-btn px-3.5 py-1.5 rounded-lg bg-archive-base text-slate-400 hover:text-white border border-archive-border hover:border-archive-borderLight transition">활혈거어(活血)</button>
                 </div>
             </div>
 
-            <!-- Herb Grid -->
-            <div id="herb-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Javascript dynamic render -->
+            <!-- Herb Cards Grid -->
+            <div id="herb-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Javascript Dynamic Render -->
             </div>
         </section>
 
         <!-- ==================== TAB 2: 핵심 용어 사전 (TERMS) ==================== -->
         <section id="tab-terms" class="tab-content hidden space-y-6">
-            <div class="bg-white p-6 rounded-xl border border-oriental-200 shadow-sm">
-                <div class="mb-6">
-                    <h3 class="text-xl font-oriental font-bold text-oriental-900 mb-2">본초학 필수 이론 및 용어 사전</h3>
-                    <p class="text-sm text-gray-600">본초학의 기초가 되는 사기(四氣), 오미(五味), 귀경(歸經), 승강부침(昇降浮沈) 등 핵심 개념을 정리합니다.</p>
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-archive-border">
+                <div class="mb-8 border-b border-archive-border pb-6 flex flex-col md:flex-row justify-between md:items-end gap-4">
+                    <div>
+                        <span class="text-xs font-mono text-archive-accent uppercase tracking-widest">Theoretical Frameworks</span>
+                        <h3 class="text-2xl font-oriental font-bold text-white mt-1">본초학 5대 핵심 이론 사전</h3>
+                    </div>
+                    <p class="text-xs text-slate-400 max-w-md">본초의 기미론(氣味論) 및 약리학적 작용 원리를 체계화한 한의학 핵심 기초 가이드입니다.</p>
                 </div>
 
-                <!-- Terms Accordion / Grid -->
-                <div id="terms-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Editorial Layout Cards -->
+                <div id="terms-list" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <!-- Dynamic rendering -->
                 </div>
             </div>
         </section>
 
-        <!-- ==================== TAB 3: 방제 구성 실습 (FORMULA) ==================== -->
+        <!-- ==================== TAB 3: 방제 구성 캔버스 (FORMULA) ==================== -->
         <section id="tab-formula" class="tab-content hidden space-y-6">
-            <div class="bg-white p-6 rounded-xl border border-oriental-200 shadow-sm">
-                <div class="mb-6">
-                    <h3 class="text-xl font-oriental font-bold text-oriental-900 mb-1">군신좌사(君臣佐使) 방제 구성 실습</h3>
-                    <p class="text-sm text-gray-600">본초들을 조합하여 한의학적 기본 처방의 구조와 원리를 시뮬레이션해 봅니다.</p>
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-archive-border">
+                <div class="mb-6 flex flex-col md:flex-row justify-between md:items-end gap-4 border-b border-archive-border pb-6">
+                    <div>
+                        <span class="text-xs font-mono text-archive-accent uppercase tracking-widest">Formula Design Studio</span>
+                        <h3 class="text-2xl font-oriental font-bold text-white mt-1">군신좌사(君臣佐使) 방제 캔버스</h3>
+                    </div>
+                    <button onclick="resetFormula()" class="px-4 py-2 bg-archive-base border border-archive-border hover:border-archive-accent text-slate-300 hover:text-white rounded-xl text-xs font-medium transition flex items-center gap-1.5 self-start md:self-auto">
+                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> 처방 리셋
+                    </button>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    <!-- Left: Herb Picker -->
-                    <div class="lg:col-col-span-5 lg:col-span-5 bg-oriental-50 p-4 rounded-xl border border-oriental-200">
-                        <h4 class="font-bold text-oriental-800 text-sm mb-3 flex items-center justify-between">
-                            <span>약재 목록에서 선택</span>
-                            <span class="text-xs font-normal text-gray-500">클릭 시 추가</span>
-                        </h4>
-                        <div id="formula-herb-selector" class="space-y-2 max-h-[420px] overflow-y-auto pr-1">
-                            <!-- JS dynamic render -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left: Herb Selection Library -->
+                    <div class="lg:col-span-4 bg-archive-surface p-5 rounded-2xl border border-archive-border space-y-4">
+                        <div class="flex items-center justify-between pb-3 border-b border-archive-border">
+                            <h4 class="font-oriental font-bold text-sm text-slate-200">약재 보관함</h4>
+                            <span class="text-[10px] font-mono text-archive-accent">클릭 시 자동 배치</span>
+                        </div>
+                        <div id="formula-herb-selector" class="space-y-2.5 max-h-[480px] overflow-y-auto pr-1">
+                            <!-- JS Dynamic Render -->
                         </div>
                     </div>
 
-                    <!-- Right: Formula Workbench -->
-                    <div class="lg:col-span-7 space-y-4">
-                        <div class="bg-oriental-900 text-white p-4 rounded-xl shadow">
-                            <div class="flex justify-between items-center mb-2">
-                                <h4 class="font-oriental text-lg font-bold text-amber-200" id="formula-title">나만의 처방 구성판</h4>
-                                <button onclick="resetFormula()" class="text-xs px-2.5 py-1 bg-oriental-700 hover:bg-oriental-600 rounded text-amber-100 transition">초기화</button>
-                            </div>
-                            <p class="text-xs text-oriental-200">약재를 아래 4가지 역할(군·신·좌·사) 영역에 배치하세요.</p>
-                        </div>
-
-                        <!-- Roles Grid -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Right: Formula Canvas Workspace -->
+                    <div class="lg:col-span-8 space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <!-- 君 (군약) -->
-                            <div class="p-3 bg-red-50/70 border border-red-200 rounded-lg">
-                                <div class="flex justify-between items-center mb-2 border-b border-red-200 pb-1">
-                                    <span class="font-bold text-red-900 text-sm font-oriental">君 (군약) - 주효능</span>
-                                    <span class="text-[10px] text-red-700">주된 병증 치료</span>
+                            <div class="bg-archive-surface p-4 rounded-xl border border-archive-crimson/30 space-y-3">
+                                <div class="flex items-center justify-between border-b border-archive-crimson/20 pb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-6 h-6 rounded bg-archive-crimson/20 border border-archive-crimson/50 text-archive-crimson font-oriental font-bold text-xs flex items-center justify-center">君</span>
+                                        <span class="font-bold text-xs text-slate-200 font-oriental">군약 (主藥)</span>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 font-mono">주증 치료의 핵심</span>
                                 </div>
-                                <div id="role-jun" class="min-h-[70px] space-y-1">
-                                    <p class="text-xs text-gray-400 italic">약재를 추가해 주십시오.</p>
-                                </div>
+                                <div id="role-jun" class="min-h-[90px] space-y-2"></div>
                             </div>
 
                             <!-- 臣 (신약) -->
-                            <div class="p-3 bg-blue-50/70 border border-blue-200 rounded-lg">
-                                <div class="flex justify-between items-center mb-2 border-b border-blue-200 pb-1">
-                                    <span class="font-bold text-blue-900 text-sm font-oriental">臣 (신약) - 보조효능</span>
-                                    <span class="text-[10px] text-blue-700">군약 효능 강화</span>
+                            <div class="bg-archive-surface p-4 rounded-xl border border-archive-azure/30 space-y-3">
+                                <div class="flex items-center justify-between border-b border-archive-azure/20 pb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-6 h-6 rounded bg-archive-azure/20 border border-archive-azure/50 text-archive-azure font-oriental font-bold text-xs flex items-center justify-center">臣</span>
+                                        <span class="font-bold text-xs text-slate-200 font-oriental">신약 (輔藥)</span>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 font-mono">군약 효능 강화</span>
                                 </div>
-                                <div id="role-shin" class="min-h-[70px] space-y-1">
-                                    <p class="text-xs text-gray-400 italic">약재를 추가해 주십시오.</p>
-                                </div>
+                                <div id="role-shin" class="min-h-[90px] space-y-2"></div>
                             </div>
 
                             <!-- 佐 (좌약) -->
-                            <div class="p-3 bg-emerald-50/70 border border-emerald-200 rounded-lg">
-                                <div class="flex justify-between items-center mb-2 border-b border-emerald-200 pb-1">
-                                    <span class="font-bold text-emerald-900 text-sm font-oriental">佐 (좌약) - 억제/보완</span>
-                                    <span class="text-[10px] text-emerald-700">부작용 완화/증상 보조</span>
+                            <div class="bg-archive-surface p-4 rounded-xl border border-archive-emerald/30 space-y-3">
+                                <div class="flex items-center justify-between border-b border-archive-emerald/20 pb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-6 h-6 rounded bg-archive-emerald/20 border border-archive-emerald/50 text-archive-emerald font-oriental font-bold text-xs flex items-center justify-center">佐</span>
+                                        <span class="font-bold text-xs text-slate-200 font-oriental">좌약 (抑藥)</span>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 font-mono">독성 및 부작용 제어</span>
                                 </div>
-                                <div id="role-jwa" class="min-h-[70px] space-y-1">
-                                    <p class="text-xs text-gray-400 italic">약재를 추가해 주십시오.</p>
-                                </div>
+                                <div id="role-jwa" class="min-h-[90px] space-y-2"></div>
                             </div>
 
                             <!-- 使 (사약) -->
-                            <div class="p-3 bg-amber-50/70 border border-amber-200 rounded-lg">
-                                <div class="flex justify-between items-center mb-2 border-b border-amber-200 pb-1">
-                                    <span class="font-bold text-amber-900 text-sm font-oriental">使 (사약) - 조화/조경</span>
-                                    <span class="text-[10px] text-amber-700">약성 조화 및 병위 인도</span>
+                            <div class="bg-archive-surface p-4 rounded-xl border border-archive-amber/30 space-y-3">
+                                <div class="flex items-center justify-between border-b border-archive-amber/20 pb-2">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-6 h-6 rounded bg-archive-amber/20 border border-archive-amber/50 text-archive-amber font-oriental font-bold text-xs flex items-center justify-center">使</span>
+                                        <span class="font-bold text-xs text-slate-200 font-oriental">사약 (調/引)</span>
+                                    </div>
+                                    <span class="text-[10px] text-slate-400 font-mono">약성 조화 및 경락 인도</span>
                                 </div>
-                                <div id="role-sa" class="min-h-[70px] space-y-1">
-                                    <p class="text-xs text-gray-400 italic">약재를 추가해 주십시오.</p>
-                                </div>
+                                <div id="role-sa" class="min-h-[90px] space-y-2"></div>
                             </div>
                         </div>
 
-                        <!-- Combined Properties Summary -->
-                        <div class="bg-oriental-100/60 p-4 rounded-xl border border-oriental-200">
-                            <h5 class="font-bold text-oriental-900 text-xs uppercase tracking-wider mb-2">처방 분석 피드백</h5>
-                            <div id="formula-analysis" class="text-xs text-oriental-800 leading-relaxed">
-                                구성된 약재가 없습니다. 좌측에서 약재를 클릭하여 처방을 만들어보세요.
+                        <!-- Real-time Analysis Feedback -->
+                        <div class="bg-archive-card p-5 rounded-xl border border-archive-border space-y-2">
+                            <div class="flex items-center gap-2 text-archive-accent text-xs font-mono font-semibold uppercase">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                <span>방제 구성 실시간 분석 리포트</span>
+                            </div>
+                            <div id="formula-analysis" class="text-xs text-slate-300 leading-relaxed space-y-1">
+                                좌측에서 약재를 클릭하여 방제를 구성하십시오.
                             </div>
                         </div>
                     </div>
@@ -286,20 +333,19 @@
 
         <!-- ==================== TAB 4: 자가 학습 퀴즈 (QUIZ) ==================== -->
         <section id="tab-quiz" class="tab-content hidden space-y-6">
-            <div class="max-w-2xl mx-auto bg-white p-6 rounded-xl border border-oriental-200 shadow-md">
-                <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
+            <div class="max-w-3xl mx-auto glass-panel p-6 sm:p-10 rounded-2xl border border-archive-border shadow-2xl">
+                <div class="flex items-center justify-between pb-6 border-b border-archive-border mb-6">
                     <div>
-                        <span class="text-xs text-herb-700 font-semibold uppercase tracking-wider">Herbology Practice Quiz</span>
-                        <h3 class="text-xl font-oriental font-bold text-oriental-900">본초학 실력 점검 퀴즈</h3>
+                        <span class="text-xs font-mono text-archive-accent uppercase tracking-widest">Interactive Practice</span>
+                        <h3 class="text-2xl font-oriental font-bold text-white mt-1">본초 지식 검증 테스트</h3>
                     </div>
-                    <span id="quiz-score" class="px-3 py-1 bg-amber-100 text-amber-900 font-bold rounded-full text-xs">
-                        점수: 0 / 0
-                    </span>
+                    <div class="bg-archive-base border border-archive-border px-4 py-2 rounded-xl text-xs font-mono text-archive-accent font-bold">
+                        Score: <span id="quiz-score">0</span> / <span id="quiz-total">30</span>
+                    </div>
                 </div>
 
-                <!-- Quiz Card Container -->
                 <div id="quiz-container" class="space-y-6">
-                    <!-- Dynamic Render -->
+                    <!-- JS Dynamic Render -->
                 </div>
             </div>
         </section>
@@ -307,89 +353,95 @@
     </main>
 
     <!-- Herb Detail Modal -->
-    <div id="herb-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-oriental-200">
-            <div class="sticky top-0 bg-oriental-900 text-white p-5 flex justify-between items-start rounded-t-2xl">
+    <div id="herb-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-archive-surface rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto border border-archive-border shadow-2xl space-y-0">
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-archive-border flex justify-between items-start bg-archive-card/50">
                 <div>
-                    <span id="modal-category" class="inline-block px-2.5 py-0.5 bg-herb-700 text-amber-200 rounded text-xs mb-1">
+                    <span id="modal-category" class="inline-block px-2.5 py-0.5 bg-archive-accent/10 border border-archive-accent/30 text-archive-accent text-[11px] font-mono rounded mb-2">
                         분류
                     </span>
-                    <h3 id="modal-title" class="text-2xl font-oriental font-bold text-amber-100">
-                        약재명 <span id="modal-hanja" class="text-base font-normal text-oriental-300"></span>
+                    <h3 id="modal-title" class="text-2xl font-oriental font-bold text-white flex items-baseline gap-2">
+                        약재명 <span id="modal-hanja" class="text-base font-normal text-slate-400 font-latin-serif italic"></span>
                     </h3>
                 </div>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-white p-1">
-                    <i data-lucide="x" class="w-6 h-6"></i>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg border border-transparent hover:border-archive-border transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
 
-            <div class="p-6 space-y-5">
-                <!-- Essential Properties Grid -->
-                <div class="grid grid-cols-3 gap-3 text-center bg-oriental-50 p-3 rounded-xl border border-oriental-200">
-                    <div class="p-2">
-                        <span class="block text-xs text-gray-500 font-medium mb-1">사기 (四氣)</span>
-                        <span id="modal-nature" class="font-bold text-oriental-900 text-sm">--</span>
+            <!-- Modal Content -->
+            <div class="p-6 space-y-6">
+                <!-- Properties Box -->
+                <div class="grid grid-cols-3 gap-3 text-center bg-archive-base p-4 rounded-xl border border-archive-border">
+                    <div>
+                        <span class="block text-[10px] font-mono text-slate-400 mb-1">사기 (四氣)</span>
+                        <span id="modal-nature" class="font-bold text-archive-accent text-sm">--</span>
                     </div>
-                    <div class="p-2 border-x border-oriental-200">
-                        <span class="block text-xs text-gray-500 font-medium mb-1">오미 (五味)</span>
-                        <span id="modal-taste" class="font-bold text-oriental-900 text-sm">--</span>
+                    <div class="border-x border-archive-border">
+                        <span class="block text-[10px] font-mono text-slate-400 mb-1">오미 (五味)</span>
+                        <span id="modal-taste" class="font-bold text-slate-200 text-sm">--</span>
                     </div>
-                    <div class="p-2">
-                        <span class="block text-xs text-gray-500 font-medium mb-1">귀경 (歸經)</span>
-                        <span id="modal-channel" class="font-bold text-oriental-900 text-sm">--</span>
+                    <div>
+                        <span class="block text-[10px] font-mono text-slate-400 mb-1">귀경 (歸經)</span>
+                        <span id="modal-channel" class="font-bold text-slate-200 text-sm">--</span>
                     </div>
                 </div>
 
-                <!-- Main Actions / Functions -->
-                <div>
-                    <h4 class="font-bold text-oriental-900 text-sm mb-2 flex items-center gap-1.5">
-                        <i data-lucide="activity" class="w-4 h-4 text-herb-700"></i> 주치 및 효능 (功效)
+                <!-- Main Effects -->
+                <div class="space-y-2">
+                    <h4 class="text-xs font-mono text-archive-accent uppercase tracking-wider flex items-center gap-1.5">
+                        <i data-lucide="activity" class="w-3.5 h-3.5"></i> 주치 및 효능 (功效)
                     </h4>
-                    <p id="modal-effects" class="text-sm text-gray-700 leading-relaxed bg-herb-50/50 p-3 rounded-lg border border-herb-100">
+                    <p id="modal-effects" class="text-xs text-slate-200 leading-relaxed bg-archive-card p-4 rounded-xl border border-archive-border font-medium">
                         --
                     </p>
                 </div>
 
-                <!-- Description / Botany -->
-                <div>
-                    <h4 class="font-bold text-oriental-900 text-sm mb-2 flex items-center gap-1.5">
-                        <i data-lucide="file-text" class="w-4 h-4 text-herb-700"></i> 기원 및 특징
+                <!-- Description -->
+                <div class="space-y-2">
+                    <h4 class="text-xs font-mono text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5"></i> 기원 및 특성
                     </h4>
-                    <p id="modal-desc" class="text-sm text-gray-600 leading-relaxed">
+                    <p id="modal-desc" class="text-xs text-slate-300 leading-relaxed">
                         --
                     </p>
                 </div>
 
-                <!-- Caution / Contraindications -->
-                <div id="modal-caution-box" class="bg-red-50 p-3.5 rounded-xl border border-red-200 text-xs text-red-800 space-y-1">
-                    <span class="font-bold block text-red-900 flex items-center gap-1">
-                        <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> 사용 시 주의사항 (禁忌)
+                <!-- Caution -->
+                <div class="p-4 rounded-xl bg-red-950/20 border border-red-800/40 space-y-1">
+                    <span class="text-xs font-bold text-red-400 flex items-center gap-1.5">
+                        <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> 사용 시 금기사항 (禁忌)
                     </span>
-                    <p id="modal-caution">--</p>
+                    <p id="modal-caution" class="text-xs text-red-300/80 leading-relaxed">--</p>
                 </div>
             </div>
 
-            <div class="bg-gray-50 px-6 py-3 rounded-b-2xl border-t border-gray-100 text-right">
-                <button onclick="closeModal()" class="px-4 py-2 bg-oriental-800 hover:bg-oriental-900 text-white text-xs font-semibold rounded-lg transition">
+            <!-- Modal Footer -->
+            <div class="p-4 bg-archive-base border-t border-archive-border text-right">
+                <button onclick="closeModal()" class="px-5 py-2 bg-archive-surface hover:bg-archive-card border border-archive-border text-slate-200 text-xs font-medium rounded-xl transition">
                     닫기
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-oriental-900 text-oriental-400 py-6 border-t border-oriental-800 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-2">
-            <p class="font-oriental text-oriental-300">한의과대학 본초학(本草學) 강의 실습 스마트 플랫폼</p>
-            <p class="text-oriental-500">본 시스템은 교육 및 복습 목적으로 제작되었으며, 실제 임상 처방 시 전문 한의사의 진단이 필요합니다.</p>
+    <!-- Editorial Footer -->
+    <footer class="mt-auto border-t border-archive-border bg-archive-surface py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-mono">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-archive-accent"></span>
+                <span class="font-oriental text-slate-300">한의과대학 본초학 에디토리얼 수업 스튜디오</span>
+            </div>
+            <p class="text-center md:text-right text-[11px]">
+                Inspired by Taste-Skill Editorial Direction • Educational Purposes Only
+            </p>
         </div>
     </footer>
 
-    <!-- JavaScript Data and Logic -->
+    <!-- JavaScript Controller -->
     <script>
-        // ================= 데이터 정의 (DATABASES) =================
-
-        // 약재 데이터베이스
+        // Herb Data Store
         const herbsData = [
             {
                 id: 'h1',
@@ -399,10 +451,10 @@
                 nature: '온(溫)',
                 taste: '신(辛), 미고(微苦)',
                 channel: '폐(肺), 방광(膀胱)',
-                effects: '발한해표(發汗解表), 선폐평천(宣肺平喘), 利水消腫(리수소종)',
-                desc: '초마황, 목적마황 등의 초질경. 외감풍한으로 인한 오한, 발열, 무한(땀이 안 남) 및 기침, 천식에 대표적으로 쓰입니다.',
-                caution: '발한 작용이 강하므로 체질이 허약하여 땀이 많은 자(표허자)는 신중히 투여하거나 금합니다.',
-                color: 'bg-amber-100 text-amber-900 border-amber-300'
+                effects: '발한해표(發汗解表), 선폐평천(宣肺平喘), 리수소종(利水消腫)',
+                desc: '초마황, 목적마황의 초질경. 외감풍한으로 인한 오한, 발열, 무한 및 기침, 천식 치료의 대표 약재.',
+                caution: '발한 작용이 매우 강하므로 표허자(땀이 많은 사람) 및 고혈압 환자는 신중히 투여.',
+                badgeColor: 'border-amber-500/30 text-amber-300 bg-amber-500/10'
             },
             {
                 id: 'h2',
@@ -413,9 +465,9 @@
                 taste: '신(辛), 달(甘)',
                 channel: '심(心), 폐(肺), 방광(膀胱)',
                 effects: '발한해표(發汗解表), 온경통맥(溫經通脈), 통양화기(通陽化氣)',
-                desc: '육계나무의 어린 가지. 마황과 함께 표증을 해소하며, 경락을 따뜻하게 하여 통증을 완화합니다.',
-                caution: '열병 고열이 있는 자 및 음허화왕자에게는 삼갑니다.',
-                color: 'bg-amber-100 text-amber-900 border-amber-300'
+                desc: '육계나무의 어린 가지. 마황과 함께 표증을 해소하며 경락을 따뜻하게 하여 관절통을 완화.',
+                caution: '열병 고열 환자 및 음허화왕자 투여 삼가.',
+                badgeColor: 'border-amber-500/30 text-amber-300 bg-amber-500/10'
             },
             {
                 id: 'h3',
@@ -426,9 +478,9 @@
                 taste: '고(苦)',
                 channel: '심(心), 간(肝), 위(胃), 대장(大腸)',
                 effects: '청열조습(清熱燥濕), 사화해독(瀉火解毒)',
-                desc: '일엽초과에 속하는 식물의 뿌리줄기. 심화(心火)를 내리는 데 탁월하여 가슴이 답답하고 잠을 이루지 못하거나 고열이 날 때 쓰입니다.',
-                caution: '성질이 대한(大寒)하고 대고(大苦)하여 위장을 손상시킬 수 있으므로 脾胃虛寒 자는 금합니다.',
-                color: 'bg-blue-100 text-blue-900 border-blue-300'
+                desc: '심화(心火)를 사하는 성약. 가슴이 답답하고 불안하며 불면증이나 고열이 날 때 사용.',
+                caution: '성질이 대고대한(大苦大寒)하여 비위가 허한한 자는 복용 금지.',
+                badgeColor: 'border-blue-500/30 text-blue-300 bg-blue-500/10'
             },
             {
                 id: 'h4',
@@ -438,10 +490,10 @@
                 nature: '미온(微溫)',
                 taste: '감(甘), 미고(微苦)',
                 channel: '비(脾), 폐(肺), 심(心)',
-                effects: '대보원기(大補元氣), 복맥고탈(復脈固脫), 보비익폐(補脾益肺), 생진養神',
-                desc: '원기(元氣)를 크게 보하는 보약의 대표. 허약 체질, 급성 탈수, 만성 피로 및 비위 기허증에 핵심적으로 응용됩니다.',
-                caution: '실열(實熱) 증상이나 삼초에 열이 가득한 경우 투여에 주의합니다.',
-                color: 'bg-emerald-100 text-emerald-900 border-emerald-300'
+                effects: '대보원기(大補元氣), 복맥고탈(復脈固脫), 보비익폐(補脾益肺)',
+                desc: '원기를 크게 보하는 대표 보약. 만성 피로, 급성 탈기, 비위기허에 탁월.',
+                caution: '실열(實熱) 증상이나 고혈압 상태에서는 진단 후 신중 투여.',
+                badgeColor: 'border-emerald-500/30 text-emerald-300 bg-emerald-500/10'
             },
             {
                 id: 'h5',
@@ -452,9 +504,9 @@
                 taste: '감(甘), 신(辛)',
                 channel: '간(肝), 심(心), 비(脾)',
                 effects: '보혈화혈(補血和血), 조경지통(調經止痛), 윤장통변(潤腸通便)',
-                desc: '대표적인 보혈 약재로 부인과 질환의 성약(聖藥)입니다. 혈액 순환을 돕고 혈허로 인한 어지럼증, 월경불순을 치료합니다.',
-                caution: '습설(濕雪) 및 변이 묽은 설사 환자는 주의합니다.',
-                color: 'bg-emerald-100 text-emerald-900 border-emerald-300'
+                desc: '대표적 보혈 약재. 부인과 질환의 성약으로 혈액 순환 및 어지럼증 완화.',
+                caution: '장위 습설 및 설사 환자는 복용 삼가.',
+                badgeColor: 'border-emerald-500/30 text-emerald-300 bg-emerald-500/10'
             },
             {
                 id: 'h6',
@@ -465,9 +517,9 @@
                 taste: '신(辛), 고(苦)',
                 channel: '비(脾), 폐(肺)',
                 effects: '리가조중(理氣燥中), 조습화담(燥濕化痰)',
-                desc: '귤나무의 말린 껍질. 오래될수록(陳) 효과가 좋아지며, 기(氣)의 순환을 촉진하고 담음을 제거하여 소화기 정체를 해소합니다.',
-                caution: '기허(氣虛)로 인한 땀 유출이나 건조한 기침에는 삼갑니다.',
-                color: 'bg-orange-100 text-orange-900 border-orange-300'
+                desc: '귤나무 말린 껍질. 기(氣) 순환 촉진 및 담음 제거로 소화 정체 해소.',
+                caution: '기허자 및 마른 기침 환자는 투여 주의.',
+                badgeColor: 'border-orange-500/30 text-orange-300 bg-orange-500/10'
             },
             {
                 id: 'h7',
@@ -478,9 +530,9 @@
                 taste: '고(苦)',
                 channel: '심(心), 간(肝)',
                 effects: '활혈거어(活血祛瘀), 통경지통(通經止痛), 청심제번(清心除煩)',
-                desc: '"일미단삼공동사물탕(一味丹蔘功同四物湯)"이라 불릴 만큼 혈액순환 개선 및 어어 제거 효능이 뛰어납니다.',
-                caution: '임산부 및 출혈성 질환 환자는 주의를 요합니다.',
-                color: 'bg-rose-100 text-rose-900 border-rose-300'
+                desc: '혈액순환 개선 및 어혈 제거 효과가 뛰어나 단일 약재로 사물탕의 효능에 비견됨.',
+                caution: '임산부 및 출혈성 질환자 주의.',
+                badgeColor: 'border-rose-500/30 text-rose-300 bg-rose-500/10'
             },
             {
                 id: 'h8',
@@ -491,82 +543,78 @@
                 taste: '감(甘)',
                 channel: '십이경락 전체',
                 effects: '보비익기(補脾益氣), 청열해독(清熱解毒), 조화제약(調和諸藥)',
-                desc: '약방의 감초라는 말처럼 여러 약재의 독성을 완화하고 성질을 조화롭게 어우러지게 만드는 사약(使藥)의 대표격.',
-                caution: '장기 대량 복용 시 부종 및 고혈압(pseudoaldosteronism)을 유발할 수 있습니다.',
-                color: 'bg-yellow-100 text-yellow-900 border-yellow-300'
+                desc: '약재의 독성을 완화하고 제약의 성질을 조화롭게 융합시키는 대표 사약(使藥).',
+                caution: '장기 대량 복용 시 부종 및 고혈압 유발 가능성.',
+                badgeColor: 'border-yellow-500/30 text-yellow-300 bg-yellow-500/10'
             }
         ];
 
-        // 용어 사전 데이터베이스
         const termsData = [
             {
                 title: '사기 (四氣 / 四性)',
-                subtitle: '약재가 가진 4가지 온도적 성질',
-                desc: '한약재가 인체 내에서 일으키는 온도 작용 반응입니다.',
+                subtitle: '약재가 가진 4가지 온도 체계',
+                desc: '인체 내에서 야기하는 온냉 반응의 지표',
                 tags: ['한(寒)', '열(熱)', '온(溫)', '량(涼)'],
-                detail: '약성의 뜨겁고 차가움을 말합니다. 열성/온성 약재는 몸을 따뜻하게 하고 한증(寒證)을 치료하며, 한성/량성 약재는 열을 내리고 열증(熱證)을 다스립니다. 평(平)성은 치우치지 않은 성질입니다.'
+                detail: '약성의 차갑고 뜨거움. 열/온성 약재는 몸을 따뜻하게 하고 한증(寒證)을 다스리며, 한/량성 약재는 열을 끌어내리고 염증을 가라앉힙니다.'
             },
             {
                 title: '오미 (五味)',
-                subtitle: '약재가 가진 5가지 맛과 효능',
-                desc: '신맛, 단맛, 쓴맛, 매운맛, 짜운맛의 효능 관계입니다.',
-                tags: ['산(酸)', '감(甘)', '고(苦)', '신(辛)', '함(咸)'],
-                detail: '• 신맛(酸): 수렴·수축 (수렴고삽)<br>• 단맛(甘): 보양·완화 (보익완급)<br>• 쓴맛(苦): 청열·강기 (청열조습)<br>• 매운맛(辛): 발산·행기 (발산행기)<br>• 짜운맛(咸): 연견·연화 (연견산결)'
+                subtitle: '5가지 맛과 효능 작용 기전',
+                desc: '맛의 구분에 따른 유기적 신체 작용',
+                tags: ['신맛', '단맛', '쓴맛', '매운맛', '짜운맛'],
+                detail: '• 신맛(酸): 수렴고삽(수축)<br>• 단맛(甘): 보익완급(보양·완화)<br>• 쓴맛(苦): 청열조습(열 끄기·건조)<br>• 매운맛(辛): 발산행기(발산·순환)'
             },
             {
                 title: '귀경 (歸經)',
-                subtitle: '약재 작용의 장부 및 경락 선택성',
-                desc: '어느 장부와 경락에 주로 작용하는지 나타내는 지표.',
+                subtitle: '장부 및 경락 작용 선택성',
+                desc: '특정 장부로 수증하여 작용하는 향도성',
                 tags: ['장부인도', '선택성', '경락'],
-                detail: '특정 약물이 특정 장부(臟腑)나 경락(經絡)의 병증에 더욱 특화되어 작용함을 의미합니다. 예: 마황은 폐경(肺經)으로 들어가 기침과 천식을 치료합니다.'
+                detail: '약물이 특정 장부(臟腑)나 경락(經絡)으로 우선 진입하여 치료 효능을 집중시키는 특성입니다.'
             },
             {
                 title: '승강부침 (昇降浮沈)',
-                subtitle: '약재의 작용 방향성',
-                desc: '인체 상하 안팎으로 약효가 작용하는 기전.',
+                subtitle: '약효의 상하 안팎 방향성',
+                desc: '인체 상하 및 신진대사 방향 조절',
                 tags: ['승(昇)', '강(降)', '부(浮)', '침(沈)'],
-                detail: '• 승/부: 위로 상승하거나 겉으로 발산 (위쪽, 표층 병증 치료)<br>• 강/침: 아래로 하강하거나 속으로 침투 (아래쪽, 락증 병증 치료)'
+                detail: '• 승/부: 위로 상승하거나 표층으로 발산<br>• 강/침: 아래로 하강하거나 장부 속으로 침투하여 정체 완화'
             },
             {
                 title: '군신좌사 (君臣佐使)',
-                subtitle: '한의학 처방(방제)의 4대 구성 원리',
-                desc: '약재 간의 주조 관계와 협동 작용 구조.',
+                subtitle: '방제학의 4대 구성 메커니즘',
+                desc: '유기적 처방 구성을 위한 역할 분담',
                 tags: ['군약', '신약', '좌약', '사약'],
-                detail: '• 군(君): 주 병증을 치료하는 가장 핵심 약재<br>• 신(臣): 군약의 효능을 보조 및 강화<br>• 좌(佐): 독성/부작용 제어 및 서브 증상 치료<br>• 사(使): 약효를 목적 경락으로 인도하고 제약 조화'
+                detail: '• 군(君): 주 증상 치료<br>• 신(臣): 군약의 작용 강화<br>• 좌(佐): 부작용 억제 및 서브 증상 케어<br>• 사(使): 목적 경락 인도 및 전체 약재 조화'
             }
         ];
 
-        // 퀴즈 데이터베이스
         const quizData = [
             {
-                question: "다음 중 '대보원기(大補元氣)'의 대표적인 효능을 가지며 원기를 크게 보하는 약재는?",
+                question: "원기를 크게 보하는 '대보원기(大補元氣)'의 핵심 약재는 무엇입니까?",
                 options: ["황련", "인삼", "진피", "마황"],
                 answer: 1,
-                explanation: "인삼(人蔘)은 성질이 따뜻하고 대보원기하여 허약체질 및 급성 탈기 상태에 사용됩니다."
+                explanation: "인삼(人蔘)은 성질이 미온하며 허약 체질 및 탈기 상태에서 원기를 끌어올립니다."
             },
             {
-                question: "사기(四氣) 중 몸의 열을 내리고 염증을 가라앉히는 청열 작용에 주로 쓰이는 성질은?",
+                question: "사기(四氣) 중 심화(心火)를 내리고 염증 및 고열을 해소하는 성질은?",
                 options: ["온(溫)", "열(熱)", "한(寒)", "평(平)"],
                 answer: 2,
-                explanation: "한(寒)성 약재는 열을 끄고 열증을 치료하는 데 효과적입니다."
+                explanation: "한(寒)성 약재는 몸의 열을 끄고 염증성 병증을 치료합니다."
             },
             {
-                question: "방제 구성 원리인 '군신좌사(君臣佐使)'에서 약재들의 독성을 완화하거나 약성을 목적 경락으로 안내하는 역할을 맡은 위치는?",
+                question: "방제 구성 시 약재 간의 독성을 완화하고 전체 약성을 조화시키는 역할을 담당하는 위치는?",
                 options: ["군약(君藥)", "신약(臣藥)", "좌약(佐藥)", "사약(使藥)"],
                 answer: 3,
-                explanation: "사약(使藥)은 약재들을 조화롭게(調和諸藥) 하거나 인경(引經 - 약효 인도)하는 역할을 합니다."
+                explanation: "사약(使藥)은 약재들을 조화롭게 통율(조화제약)하거나 인경하는 역할을 수행합니다."
             }
         ];
 
-        // ================= 상태 관리 (APP STATE) =================
-        let currentTab = 'herbs';
+        // Global States
         let currentCategory = 'all';
-        let myFormula = []; // 처방 구성 실습용 약재 담기
-        let currentQuizIndex = 0;
+        let myFormula = [];
+        let currentQuizIdx = 0;
         let quizScore = 0;
         let answeredQuizzes = new Set();
 
-        // ================= 초기화 (INITIALIZATION) =================
         window.onload = function() {
             lucide.createIcons();
             renderHerbs();
@@ -575,26 +623,21 @@
             renderQuiz();
         };
 
-        // Tab Switching
         function switchTab(tabId) {
-            currentTab = tabId;
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.getElementById(`tab-${tabId}`).classList.remove('hidden');
 
-            // Update nav styling
-            const navButtons = ['herbs', 'terms', 'formula', 'quiz'];
-            navButtons.forEach(id => {
+            const navs = ['herbs', 'terms', 'formula', 'quiz'];
+            navs.forEach(id => {
                 const btn = document.getElementById(`nav-${id}`);
                 if (btn) {
                     if (id === tabId) {
-                        btn.className = "px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5 bg-oriental-800 text-amber-200";
+                        btn.className = "px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-2 bg-archive-accent text-archive-base font-semibold shadow-sm";
                     } else {
-                        btn.className = "px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1.5 hover:bg-oriental-800 text-oriental-200";
+                        btn.className = "px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-2 text-slate-300 hover:text-white hover:bg-archive-card";
                     }
                 }
             });
-
-            // Mobile menu hide
             document.getElementById('mobile-menu').classList.add('hidden');
         }
 
@@ -602,53 +645,51 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        // ================= TAB 1: 본초 도감 로직 =================
         function renderHerbs() {
             const grid = document.getElementById('herb-grid');
             const searchVal = document.getElementById('herb-search').value.toLowerCase();
 
-            const filtered = herbsData.filter(herb => {
-                const matchCat = (currentCategory === 'all') || (herb.category === currentCategory);
-                const matchSearch = herb.name.toLowerCase().includes(searchVal) ||
-                                    herb.hanja.includes(searchVal) ||
-                                    herb.effects.toLowerCase().includes(searchVal) ||
-                                    herb.category.includes(searchVal);
+            const filtered = herbsData.filter(h => {
+                const matchCat = (currentCategory === 'all') || (h.category === currentCategory);
+                const matchSearch = h.name.toLowerCase().includes(searchVal) ||
+                                    h.hanja.includes(searchVal) ||
+                                    h.effects.toLowerCase().includes(searchVal);
                 return matchCat && matchSearch;
             });
 
             if (filtered.length === 0) {
                 grid.innerHTML = `
-                    <div class="col-span-full text-center py-12 text-gray-400">
-                        <i data-lucide="search-x" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
-                        <p>검색 조건에 해당되는 약재가 없습니다.</p>
+                    <div class="col-span-full py-16 text-center text-slate-500 font-mono text-xs">
+                        <i data-lucide="search-x" class="w-8 h-8 mx-auto mb-2 text-slate-600"></i>
+                        해당되는 약재 검색 결과가 없습니다.
                     </div>
                 `;
                 lucide.createIcons();
                 return;
             }
 
-            grid.innerHTML = filtered.map(herb => `
-                <div onclick="openModal('${herb.id}')" class="bg-white rounded-xl border border-oriental-200 p-5 shadow-sm hover:shadow-md transition cursor-pointer flex flex-col justify-between group hover:border-herb-500">
+            grid.innerHTML = filtered.map(h => `
+                <div onclick="openModal('${h.id}')" class="bg-archive-surface rounded-2xl border border-archive-border p-5 herb-card-hover cursor-pointer group flex flex-col justify-between space-y-4">
                     <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-xs px-2.5 py-1 rounded-full bg-oriental-100 text-oriental-800 font-medium">
-                                ${herb.category}
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded border ${h.badgeColor}">
+                                ${h.category}
                             </span>
-                            <span class="text-xs px-2 py-0.5 rounded border ${herb.color} font-medium">
-                                ${herb.nature}
+                            <span class="text-[10px] font-mono text-slate-400">
+                                ${h.nature}
                             </span>
                         </div>
-                        <h4 class="text-lg font-oriental font-bold text-oriental-900 group-hover:text-herb-700 transition flex items-baseline gap-1.5">
-                            ${herb.name} <span class="text-xs font-normal text-gray-500">${herb.hanja}</span>
+                        <h4 class="text-xl font-oriental font-bold text-white group-hover:text-archive-accent transition-colors flex items-baseline gap-2">
+                            ${h.name} <span class="text-xs font-latin-serif italic font-normal text-slate-400">${h.hanja}</span>
                         </h4>
-                        <div class="mt-3 text-xs space-y-1.5 text-gray-600">
-                            <p><span class="font-semibold text-oriental-800">오미:</span> ${herb.taste}</p>
-                            <p><span class="font-semibold text-oriental-800">귀경:</span> ${herb.channel}</p>
+                        <div class="mt-3 text-xs text-slate-400 space-y-1 font-sans">
+                            <p><span class="text-slate-500 font-mono">오미:</span> ${h.taste}</p>
+                            <p><span class="text-slate-500 font-mono">귀경:</span> ${h.channel}</p>
                         </div>
                     </div>
-                    <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-herb-700 font-medium">
-                        <span>상세보기</span>
-                        <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    <div class="pt-3 border-t border-archive-border/60 flex items-center justify-between text-[11px] text-archive-accent font-mono">
+                        <span>상세 정보 보기</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
                     </div>
                 </div>
             `).join('');
@@ -659,30 +700,29 @@
         function setHerbCategory(cat) {
             currentCategory = cat;
             document.querySelectorAll('#category-filters button').forEach(btn => {
-                btn.className = "cat-btn bg-oriental-100 text-oriental-800 hover:bg-oriental-200 px-3 py-1.5 rounded-full transition";
+                btn.className = "cat-btn px-3.5 py-1.5 rounded-lg bg-archive-base text-slate-400 hover:text-white border border-archive-border hover:border-archive-borderLight transition";
             });
-            event.target.className = "cat-btn active bg-herb-700 text-white px-3 py-1.5 rounded-full transition";
-            filterHerbs();
+            event.target.className = "cat-btn active px-3.5 py-1.5 rounded-lg bg-archive-accent text-archive-base font-bold transition";
+            renderHerbs();
         }
 
         function filterHerbs() {
             renderHerbs();
         }
 
-        // Modal Handler
         function openModal(id) {
-            const herb = herbsData.find(h => h.id === id);
-            if (!herb) return;
+            const h = herbsData.find(item => item.id === id);
+            if (!h) return;
 
-            document.getElementById('modal-title').childNodes[0].nodeValue = herb.name + " ";
-            document.getElementById('modal-hanja').innerText = `(${herb.hanja})`;
-            document.getElementById('modal-category').innerText = herb.category;
-            document.getElementById('modal-nature').innerText = herb.nature;
-            document.getElementById('modal-taste').innerText = herb.taste;
-            document.getElementById('modal-channel').innerText = herb.channel;
-            document.getElementById('modal-effects').innerText = herb.effects;
-            document.getElementById('modal-desc').innerText = herb.desc;
-            document.getElementById('modal-caution').innerText = herb.caution;
+            document.getElementById('modal-title').childNodes[0].nodeValue = h.name + " ";
+            document.getElementById('modal-hanja').innerText = `(${h.hanja})`;
+            document.getElementById('modal-category').innerText = h.category;
+            document.getElementById('modal-nature').innerText = h.nature;
+            document.getElementById('modal-taste').innerText = h.taste;
+            document.getElementById('modal-channel').innerText = h.channel;
+            document.getElementById('modal-effects').innerText = h.effects;
+            document.getElementById('modal-desc').innerText = h.desc;
+            document.getElementById('modal-caution').innerText = h.caution;
 
             document.getElementById('herb-modal').classList.remove('hidden');
         }
@@ -691,72 +731,59 @@
             document.getElementById('herb-modal').classList.add('hidden');
         }
 
-        // ================= TAB 2: 핵심 용어 사전 로직 =================
         function renderTerms() {
             const container = document.getElementById('terms-list');
             container.innerHTML = termsData.map((term, idx) => `
-                <div class="bg-oriental-50/50 p-5 rounded-xl border border-oriental-200 hover:border-oriental-300 transition">
-                    <div class="flex items-start justify-between mb-2">
+                <div class="bg-archive-surface p-6 rounded-2xl border border-archive-border space-y-3 hover:border-archive-accent/40 transition-colors">
+                    <div class="flex items-start justify-between">
                         <div>
-                            <h4 class="font-oriental font-bold text-oriental-900 text-base">${term.title}</h4>
-                            <p class="text-xs text-oriental-600 font-medium">${term.subtitle}</p>
+                            <span class="text-[10px] font-mono text-archive-accent">FRAMEWORK 0${idx + 1}</span>
+                            <h4 class="font-oriental font-bold text-lg text-white mt-0.5">${term.title}</h4>
+                            <p class="text-xs text-slate-400 font-sans">${term.subtitle}</p>
                         </div>
-                        <span class="w-6 h-6 rounded-full bg-oriental-200 text-oriental-800 flex items-center justify-center text-xs font-bold font-oriental">
-                            ${idx + 1}
-                        </span>
                     </div>
-                    <p class="text-xs text-gray-600 mb-3 leading-relaxed">${term.desc}</p>
-                    <div class="p-3 bg-white rounded-lg border border-oriental-200 text-xs text-gray-700 leading-normal">
+                    <div class="p-3.5 bg-archive-base rounded-xl border border-archive-border text-xs text-slate-300 leading-relaxed font-sans">
                         ${term.detail}
                     </div>
-                    <div class="mt-3 flex flex-wrap gap-1">
-                        ${term.tags.map(t => `<span class="text-[10px] bg-oriental-200/60 text-oriental-800 px-2 py-0.5 rounded">${t}</span>`).join('')}
+                    <div class="flex flex-wrap gap-1.5 pt-1">
+                        ${term.tags.map(t => `<span class="text-[10px] font-mono bg-archive-card border border-archive-border text-slate-400 px-2 py-0.5 rounded">${t}</span>`).join('')}
                     </div>
                 </div>
             `).join('');
         }
 
-        // ================= TAB 3: 처방 실습 스튜디오 로직 =================
         function renderFormulaSelector() {
             const container = document.getElementById('formula-herb-selector');
-            container.innerHTML = herbsData.map(herb => `
-                <div class="p-2.5 bg-white rounded-lg border border-oriental-200 hover:border-herb-500 transition cursor-pointer flex justify-between items-center text-xs"
-                     onclick="addToFormula('${herb.id}')">
+            container.innerHTML = herbsData.map(h => `
+                <div onclick="addToFormula('${h.id}')" class="p-3 bg-archive-base rounded-xl border border-archive-border hover:border-archive-accent/50 transition cursor-pointer flex justify-between items-center text-xs group">
                     <div>
-                        <span class="font-bold font-oriental text-oriental-900">${herb.name}</span>
-                        <span class="text-gray-400 ml-1">(${herb.hanja})</span>
-                        <span class="ml-2 text-[10px] text-herb-700 bg-herb-50 px-1.5 py-0.5 rounded">${herb.category}</span>
+                        <span class="font-oriental font-bold text-slate-200 group-hover:text-archive-accent">${h.name}</span>
+                        <span class="text-slate-500 font-latin-serif italic ml-1">(${h.hanja})</span>
                     </div>
-                    <i data-lucide="plus-circle" class="w-4 h-4 text-oriental-400 hover:text-herb-700"></i>
+                    <i data-lucide="plus" class="w-4 h-4 text-slate-500 group-hover:text-archive-accent"></i>
                 </div>
             `).join('');
             lucide.createIcons();
         }
 
-        function addToFormula(herbId) {
-            const herb = herbsData.find(h => h.id === herbId);
-            if (!herb) return;
+        function addToFormula(id) {
+            const h = herbsData.find(item => item.id === id);
+            if (!h) return;
 
-            // 순차적 군,신,좌,사 할당
-            let assignedRole = '군';
-            if (myFormula.some(item => item.role === '군')) {
-                if (myFormula.some(item => item.role === '신')) {
-                    if (myFormula.some(item => item.role === '좌')) {
-                        assignedRole = '사';
-                    } else {
-                        assignedRole = '좌';
-                    }
-                } else {
-                    assignedRole = '신';
-                }
+            let role = '군';
+            if (myFormula.some(i => i.role === '군')) {
+                if (myFormula.some(i => i.role === '신')) {
+                    if (myFormula.some(i => i.role === '좌')) role = '사';
+                    else role = '좌';
+                } else role = '신';
             }
 
-            myFormula.push({ ...herb, role: assignedRole, instanceId: Date.now() });
+            myFormula.push({ ...h, role, instanceId: Date.now() });
             updateFormulaUI();
         }
 
         function removeFromFormula(instanceId) {
-            myFormula = myFormula.filter(item => item.instanceId !== instanceId);
+            myFormula = myFormula.filter(i => i.instanceId !== instanceId);
             updateFormulaUI();
         }
 
@@ -774,96 +801,90 @@
         }
 
         function updateFormulaUI() {
-            const roles = {
+            const slots = {
                 '군': document.getElementById('role-jun'),
                 '신': document.getElementById('role-shin'),
                 '좌': document.getElementById('role-jwa'),
                 '사': document.getElementById('role-sa')
             };
 
-            // Clear UI
-            Object.keys(roles).forEach(k => roles[k].innerHTML = '');
+            Object.keys(slots).forEach(k => slots[k].innerHTML = '');
 
             if (myFormula.length === 0) {
-                Object.keys(roles).forEach(k => {
-                    roles[k].innerHTML = `<p class="text-xs text-gray-400 italic">약재를 추가해 주십시오.</p>`;
+                Object.keys(slots).forEach(k => {
+                    slots[k].innerHTML = `<p class="text-xs text-slate-500 italic py-2">배치된 약재 없음</p>`;
                 });
-                document.getElementById('formula-analysis').innerText = "구성된 약재가 없습니다. 좌측에서 약재를 선택하여 구성을 실험해보세요.";
+                document.getElementById('formula-analysis').innerText = "좌측 약재 보관함에서 본초를 선택하여 방제 구성을 실험해보세요.";
                 return;
             }
 
-            // Group herbs by role
-            ['군', '신', '좌', '사'].forEach(roleKey => {
-                const items = myFormula.filter(i => i.role === roleKey);
+            ['군', '신', '좌', '사'].forEach(r => {
+                const items = myFormula.filter(i => i.role === r);
                 if (items.length === 0) {
-                    roles[roleKey].innerHTML = `<p class="text-xs text-gray-400 italic">배치된 약재 없음</p>`;
+                    slots[r].innerHTML = `<p class="text-xs text-slate-500 italic py-2">배치된 약재 없음</p>`;
                 } else {
                     items.forEach(item => {
                         const div = document.createElement('div');
-                        div.className = "flex justify-between items-center bg-white p-1.5 rounded border border-gray-200 text-xs shadow-sm";
+                        div.className = "flex justify-between items-center bg-archive-base p-2 rounded-lg border border-archive-border text-xs";
                         div.innerHTML = `
-                            <span class="font-bold font-oriental text-gray-800">${item.name}</span>
-                            <div class="flex items-center gap-1">
-                                <select onchange="changeRole(${item.instanceId}, this.value)" class="text-[10px] bg-gray-50 border border-gray-200 rounded px-1 py-0.5">
+                            <span class="font-oriental font-bold text-slate-200">${item.name}</span>
+                            <div class="flex items-center gap-1.5">
+                                <select onchange="changeRole(${item.instanceId}, this.value)" class="text-[10px] bg-archive-card text-slate-300 border border-archive-border rounded px-1.5 py-0.5 focus:outline-none">
                                     <option value="군" ${item.role === '군' ? 'selected' : ''}>君</option>
                                     <option value="신" ${item.role === '신' ? 'selected' : ''}>臣</option>
                                     <option value="좌" ${item.role === '좌' ? 'selected' : ''}>佐</option>
                                     <option value="사" ${item.role === '사' ? 'selected' : ''}>使</option>
                                 </select>
-                                <button onclick="removeFromFormula(${item.instanceId})" class="text-red-400 hover:text-red-600">
-                                    <i data-lucide="x-circle" class="w-3.5 h-3.5"></i>
+                                <button onclick="removeFromFormula(${item.instanceId})" class="text-slate-500 hover:text-red-400">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                                 </button>
                             </div>
                         `;
-                        roles[roleKey].appendChild(div);
+                        slots[r].appendChild(div);
                     });
                 }
             });
 
-            // Summary Analysis Analysis
-            const herbNames = myFormula.map(i => `${i.name}(${i.role})`).join(', ');
-            const categories = [...new Set(myFormula.map(i => i.category))].join(', ');
+            const names = myFormula.map(i => `${i.name}[${i.role}]`).join(', ');
             document.getElementById('formula-analysis').innerHTML = `
-                <p><strong>구성 약재:</strong> ${herbNames}</p>
-                <p class="mt-1"><strong>약재 군집 분류:</strong> ${categories}</p>
-                <p class="mt-1 text-herb-700">✓ 상기 조합은 ${myFormula.length}가지 본초로 구성되었으며, 군신좌사의 유기적 조합으로 주효능 강화 및 부작용 조화를 도모합니다.</p>
+                <p><strong>구성 약재 조합:</strong> ${names}</p>
+                <p class="text-archive-accent font-mono mt-1">✓ 총 ${myFormula.length}종의 본초가 배치되어 유기적 복합 작용을 구성하고 있습니다.</p>
             `;
 
             lucide.createIcons();
         }
 
-        // ================= TAB 4: 자가 학습 퀴즈 로직 =================
         function renderQuiz() {
             const container = document.getElementById('quiz-container');
-            const q = quizData[currentQuizIndex];
+            const q = quizData[currentQuizIdx];
 
             container.innerHTML = `
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between text-xs text-gray-500">
-                        <span>문제 ${currentQuizIndex + 1} / ${quizData.length}</span>
+                <div class="space-y-5">
+                    <div class="text-xs font-mono text-slate-400">
+                        QUESTION 0${currentQuizIdx + 1} / 0${quizData.length}
                     </div>
 
-                    <h4 class="text-base font-bold text-oriental-900 leading-snug">
-                        Q. ${q.question}
+                    <h4 class="text-lg font-oriental font-bold text-white leading-relaxed">
+                        ${q.question}
                     </h4>
 
-                    <div class="space-y-2 mt-4">
+                    <div class="space-y-2.5 pt-2">
                         ${q.options.map((opt, i) => `
-                            <button onclick="checkAnswer(${i})" class="w-full text-left p-3.5 rounded-lg border border-oriental-200 hover:border-herb-500 hover:bg-herb-50/50 transition text-sm font-medium flex items-center justify-between group">
+                            <button onclick="checkAnswer(${i})" class="w-full text-left p-4 rounded-xl bg-archive-base border border-archive-border hover:border-archive-accent transition text-xs font-medium text-slate-200 flex items-center justify-between group">
                                 <span>${i + 1}. ${opt}</span>
-                                <i data-lucide="circle" class="w-4 h-4 text-gray-300 group-hover:text-herb-500"></i>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 group-hover:text-archive-accent"></i>
                             </button>
                         `).join('')}
                     </div>
 
-                    <div id="quiz-feedback" class="hidden p-4 rounded-lg text-xs leading-relaxed"></div>
+                    <div id="quiz-feedback" class="hidden p-4 rounded-xl text-xs leading-relaxed font-sans"></div>
 
-                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
-                        <button onclick="prevQuiz()" ${currentQuizIndex === 0 ? 'disabled class="opacity-40 cursor-not-allowed text-xs text-gray-400"' : 'class="text-xs font-semibold text-oriental-800 hover:underline"'}>
-                            ← 이전 문제
+                    <div class="flex justify-between items-center pt-4 border-t border-archive-border text-xs font-mono">
+                        <button onclick="prevQuiz()" ${currentQuizIdx === 0 ? 'disabled class="opacity-30 text-slate-500 cursor-not-allowed"' : 'class="text-slate-300 hover:text-archive-accent"'}>
+                            ← PREV
                         </button>
-                        <button onclick="nextQuiz()" ${currentQuizIndex === quizData.length - 1 ? 'disabled class="opacity-40 cursor-not-allowed text-xs text-gray-400"' : 'class="text-xs font-semibold text-herb-700 hover:underline"'}>
-                            다음 문제 →
+                        <button onclick="nextQuiz()" ${currentQuizIdx === quizData.length - 1 ? 'disabled class="opacity-30 text-slate-500 cursor-not-allowed"' : 'class="text-slate-300 hover:text-archive-accent"'}>
+                            NEXT →
                         </button>
                     </div>
                 </div>
@@ -871,36 +892,36 @@
             lucide.createIcons();
         }
 
-        function checkAnswer(selectedIdx) {
-            const q = quizData[currentQuizIndex];
+        function checkAnswer(selected) {
+            const q = quizData[currentQuizIdx];
             const feedback = document.getElementById('quiz-feedback');
             feedback.classList.remove('hidden');
 
-            if (selectedIdx === q.answer) {
-                if (!answeredQuizzes.has(currentQuizIndex)) {
+            if (selected === q.answer) {
+                if (!answeredQuizzes.has(currentQuizIdx)) {
                     quizScore += 10;
-                    answeredQuizzes.add(currentQuizIndex);
+                    answeredQuizzes.add(currentQuizIdx);
                 }
-                feedback.className = "p-4 rounded-lg text-xs leading-relaxed bg-emerald-50 text-emerald-900 border border-emerald-200";
-                feedback.innerHTML = `<strong>정답입니다! 🎉</strong><br>${q.explanation}`;
+                feedback.className = "p-4 rounded-xl text-xs leading-relaxed bg-emerald-950/30 border border-emerald-800/50 text-emerald-300";
+                feedback.innerHTML = `<strong>정답입니다!</strong><br>${q.explanation}`;
             } else {
-                feedback.className = "p-4 rounded-lg text-xs leading-relaxed bg-red-50 text-red-900 border border-red-200";
+                feedback.className = "p-4 rounded-xl text-xs leading-relaxed bg-red-950/30 border border-red-800/50 text-red-300";
                 feedback.innerHTML = `<strong>오답입니다.</strong><br>${q.explanation}`;
             }
 
-            document.getElementById('quiz-score').innerText = `점수: ${quizScore} / ${quizData.length * 10}`;
+            document.getElementById('quiz-score').innerText = quizScore;
         }
 
         function nextQuiz() {
-            if (currentQuizIndex < quizData.length - 1) {
-                currentQuizIndex++;
+            if (currentQuizIdx < quizData.length - 1) {
+                currentQuizIdx++;
                 renderQuiz();
             }
         }
 
         function prevQuiz() {
-            if (currentQuizIndex > 0) {
-                currentQuizIndex--;
+            if (currentQuizIdx > 0) {
+                currentQuizIdx--;
                 renderQuiz();
             }
         }
